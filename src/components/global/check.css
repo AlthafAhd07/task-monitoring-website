@@ -1,0 +1,35 @@
+.input__checkBox {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-inline: 20px;
+  box-shadow: var(--box-shadow-checkBox);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: none;
+}
+.input__checkBox::before {
+  content: "";
+  display: none;
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  border-radius: 50%;
+  z-index: -1;
+  background: linear-gradient(to left, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.input__checkBox[data-checked="active"]:hover::before {
+  display: block;
+}
+.input__checkBox[data-checked="active"]:hover {
+  background-color: var(--clr-bg-light);
+}
+
+.input__checkBox[data-checked="completed"]::before {
+  display: block;
+  transition: all 1s ease-in-out;
+}

@@ -1,0 +1,121 @@
+.todos {
+  height: 350px;
+  margin-top: 15px;
+  background-color: var(--clr-bg-light);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow-y: auto;
+  transition: all 1s ease-in-out;
+}
+
+.todos__item {
+  box-sizing: border-box;
+  height: 50px;
+  position: relative;
+  border-bottom: 1px solid var(--clr-border);
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  justify-content: space-between;
+  animation: inAnim 800ms ease-in-out;
+  transition: all 1s ease-in-out;
+}
+@keyframes inAnim {
+  0% {
+    height: 0px;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    height: 60px;
+  }
+  100% {
+    height: 50px;
+  }
+}
+.todo__left {
+  display: flex;
+  transition: all 1s ease-in-out;
+}
+.todo__left > p {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  position: relative;
+  padding-top: 3px;
+  color: var(--clr-font-primary);
+}
+.todos__item:hover > .todo__options > * {
+  scale: 1;
+}
+.todo__options {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-right: 20px;
+}
+
+.todo__penIcon {
+  scale: 0;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  fill: hsl(235, 19%, 35%);
+  transition: all 300ms ease-in-out;
+}
+.todo__penIcon:hover {
+  fill: var(--clr-font--transition);
+}
+
+.todo__crossIcon {
+  scale: 0;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  transition: all 300ms ease-in-out;
+  fill: #494c6b;
+}
+.todo__crossIcon:hover {
+  fill: var(--clr-font--transition);
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 20px;
+  height: 50px;
+  background-color: var(--clr-bg-light);
+  margin-top: 15px;
+  border-radius: 5px;
+  box-shadow: rgb(180 177 155 / 29%) 0px 0px 16px 5px;
+  font-family: "Josefin Sans", sans-serif;
+  color: var(--clr-font-dark);
+  transition: all 1s ease-in-out;
+}
+
+.option__btn {
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+.option__btn:hover {
+  color: var(--clr-font--transition);
+}
+
+.options__selectBtnGroup {
+  display: flex;
+  gap: 25px;
+  font-weight: 700;
+  font-size: 15px;
+}
+.options__selectBtnGroup > * {
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+.options__selectBtnGroup > *:hover {
+  color: var(--clr-font--transition);
+}

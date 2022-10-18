@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+.header__title {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+}
+.header__themeIcon {
+  position: relative;
+  top: 2px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+.header__themeIcon[data-anim="true dark"] {
+  animation: inAnimationLight 300ms ease-in-out;
+}
+@keyframes inAnimationLight {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+.header__themeIcon[data-anim="true light"] {
+  animation: inAnimationDark 300ms ease-in-out;
+}
+
+@keyframes inAnimationDark {
+  0% {
+    width: 0px;
+    height: 0px;
+  }
+  100% {
+    width: 22px;
+    height: 22px;
+  }
+}
