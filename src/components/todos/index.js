@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { selectAuth } from "../../features/authSlice";
 import { clearCompleted, selectTodo } from "../../features/todoSlice";
 import "./index.css";
 import TodoItem from "./TodoItem";
@@ -8,6 +9,7 @@ const Todos = ({ setUpdateTodo }) => {
   const dispatch = useDispatch();
   const [filterByStatus, setFilterByStatus] = useState();
   const [selectAllTodo, setSelectAllTodo] = useState(true);
+  const { user } = useSelector(selectAuth);
   return (
     <div>
       <div className="todos">
@@ -53,7 +55,11 @@ const Todos = ({ setUpdateTodo }) => {
         </div>
         <div
           className="option__right option__btn"
-          onClick={() => dispatch(clearCompleted())}
+          onClick={() =>
+            dispatch(
+              clearCompleted({ id: user.uid, username: user.displayName })
+            )
+          }
         >
           Clear Completed
         </div>

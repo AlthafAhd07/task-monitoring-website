@@ -1,4 +1,13 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  increment,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "../firebase";
 
 const initialState = {
   activeTodos: 0,
@@ -16,13 +25,20 @@ export const todoSlice = createSlice({
           action.payload.status === "active"
             ? state.activeTodos + 1
             : state.activeTodos;
+        if (action.payload.userId) {
+          updateDoc(doc(db, "todoCollection", action.payload.userId), {
+            activeTodos: increment(action.payload.status === "active" ? 1 : 0),
+            todos: arrayUnion(action.payload),
+          });
+        }
       },
-      prepare(message, status) {
+      prepare(message, status, userId) {
         return {
           payload: {
             id: nanoid(),
             message,
             status,
+            userId,
           },
         };
       },
@@ -49,14 +65,33 @@ export const todoSlice = createSlice({
         action.payload.status === "completed"
           ? state.activeTodos
           : state.activeTodos - 1;
+      updateDoc(doc(db, "todoCollection", action.payload.userId), {
+        activeTodos: increment(action.payload.status === "completed" ? 0 : -1),
+        todos: arrayRemove(action.payload),
+      });
     },
-    clearCompleted: (state) => {
-      state.todos = state.todos.filter((todo) => todo.status !== "completed");
+    clearCompleted: (state, action) => {
+      const filtered = state.todos.filter(
+        (todo) => todo.status !== "completed"
+      );
+      state.todos = filtered;
+      if (!!action.payload.id) {
+        setDoc(
+          doc(db, "todoCollection", action.payload.id),
+          {
+            name: action.payload.username,
+            activeTodos: state.activeTodos,
+            todos: filtered,
+          },
+          { merge: true }
+        );
+      }
     },
     updateTodoItem: (state, action) => {
       state.todos = state.todos.map((todo) => {
         if (todo.id === action.payload.id) {
           return {
+            ...todo,
             id: action.payload.id,
             message: action.payload.message,
             status: action.payload.status,
@@ -65,6 +100,10 @@ export const todoSlice = createSlice({
           return todo;
         }
       });
+    },
+    insertTodoOnLogin: (state, action) => {
+      state.activeTodos = action.payload?.activeTodos;
+      state.todos = action.payload?.todos;
     },
   },
 });
@@ -75,6 +114,7 @@ export const {
   deleteTodo,
   clearCompleted,
   updateTodoItem,
+  insertTodoOnLogin,
 } = todoSlice.actions;
 
 export const selectTodo = (state) => state.todo;

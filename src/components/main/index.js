@@ -4,6 +4,7 @@ import Header from "../header";
 import Input from "../input";
 import Todos from "../todos";
 import "./main.css";
+
 const Main = () => {
   const [updateTodo, setUpdateTodo] = useState(() => {
     return {
@@ -11,6 +12,7 @@ const Main = () => {
       todo: "",
     };
   });
+
   return (
     <div className="wrapper">
       <Navbar />

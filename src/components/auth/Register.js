@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import { auth } from "../../firebase.js";
+import { auth, db } from "../../firebase.js";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as CrossIcon } from "../../images/icon-cross.svg";
 
 import { login, selectAuth } from "../../features/authSlice";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { insertTodoOnLogin, selectTodo } from "../../features/todoSlice";
 
 const Register = () => {
   const [userData, setUserData] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { activeTodos, todos } = useSelector(selectTodo);
 
   const { user } = useSelector(selectAuth);
   useEffect(() => {
@@ -30,8 +33,8 @@ const Register = () => {
   function handleSubmit(e) {
     e.preventDefault();
     if (
-      userData.password !== userData.confirmPassword ||
-      userData.username.length < 4
+      userData.password !== userData?.confirmPassword ||
+      userData.username?.length < 4
     )
       return;
 
@@ -39,12 +42,30 @@ const Register = () => {
       .then((userAuth) => {
         updateProfile(userAuth.user, {
           displayName: userData.username,
-          photoURL: "",
         }).then(() => {
-          dispatch(
-            login(userAuth.user.uid, userData.username, userAuth.user.email)
-          );
-          navigate("/");
+          const UserIdAddedTodos = todos?.map((item) => {
+            return {
+              ...item,
+              userId: userAuth.user.uid,
+            };
+          });
+          setDoc(doc(db, "todoCollection", userAuth.user.uid), {
+            name: userAuth.user.displayName,
+            activeTodos: activeTodos ?? 0,
+            todos: UserIdAddedTodos ?? [],
+          }).then(() => {
+            dispatch(
+              insertTodoOnLogin({
+                name: userAuth.user.displayName,
+                activeTodos: activeTodos ?? 0,
+                todos: UserIdAddedTodos ?? [],
+              })
+            );
+            dispatch(
+              login(userAuth.user.uid, userData.username, userAuth.user.email)
+            );
+            navigate("/");
+          });
         });
       })
       .catch((err) => {

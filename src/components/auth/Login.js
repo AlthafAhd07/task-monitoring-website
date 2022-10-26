@@ -1,12 +1,19 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import { auth } from "../../firebase.js";
-// import { login } from "../../features/userAuth/authSlice";
+import { auth, db } from "../../firebase.js";
 import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as CrossIcon } from "../../images/icon-cross.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { login, selectAuth } from "../../features/authSlice";
+import {
+  arrayUnion,
+  doc,
+  getDoc,
+  increment,
+  updateDoc,
+} from "firebase/firestore";
+import { insertTodoOnLogin, selectTodo } from "../../features/todoSlice";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +21,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { user } = useSelector(selectAuth);
+
+  const { activeTodos, todos } = useSelector(selectTodo);
   useEffect(() => {
     if (!!user) {
       navigate("/");
@@ -23,6 +32,21 @@ const Login = () => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
+        const UserIdAddedTodos = todos?.map((item) => {
+          return {
+            ...item,
+            userId: user.uid,
+          };
+        });
+
+        updateDoc(doc(db, "todoCollection", user.uid), {
+          activeTodos: increment(activeTodos),
+          todos: arrayUnion(...todos),
+        }).then(() => {
+          getDoc(doc(db, "todoCollection", user.uid)).then((res) => {
+            dispatch(insertTodoOnLogin(res.data()));
+          });
+        });
         dispatch(login(user.uid, user.displayName, user.email));
         navigate("/");
       })

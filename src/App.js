@@ -14,18 +14,23 @@ import BgLight from "./images/bg-desktop-light.jpg";
 import BgDarkSmall from "./images/bg-mobile-dark.jpg";
 import BgLightSmall from "./images/bg-mobile-light.jpg";
 
-import { auth } from "./firebase";
+import { auth, db } from "./firebase";
 import { login } from "./features/authSlice";
+import { doc, getDoc } from "firebase/firestore";
+import { insertTodoOnLogin, selectTodo } from "./features/todoSlice";
 function App() {
   const theme = useSelector(selectTheme);
   const dispatch = useDispatch();
+  const todo = useSelector(selectTodo);
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         dispatch(login(authUser.uid, authUser.displayName, authUser.email));
+        getDoc(doc(db, "todoCollection", authUser.uid)).then((res) => {
+          dispatch(insertTodoOnLogin(res.data()));
+        });
       } else {
-        console.log("not login");
         return;
       }
     });
