@@ -25,7 +25,7 @@ const Todos = ({ setUpdateTodo }) => {
         })}
       </div>
       <div className="options">
-        <div className="option__btn">{activeTodos} items left</div>
+        <div className="option__left option__btn">{activeTodos} items left</div>
         <div className="options__selectBtnGroup">
           <div
             onClick={() => {
@@ -51,7 +51,10 @@ const Todos = ({ setUpdateTodo }) => {
             Completed
           </div>
         </div>
-        <div className="option__btn" onClick={() => dispatch(clearCompleted())}>
+        <div
+          className="option__right option__btn"
+          onClick={() => dispatch(clearCompleted())}
+        >
           Clear Completed
         </div>
       </div>

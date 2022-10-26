@@ -82,18 +82,38 @@
 }
 
 .options {
-  display: flex;
+  display: grid;
+  grid-template-areas:
+    "optionLeft optionBtnGroup optionBtnGroup optionRight"
+    "optionLeft optionBtnGroup optionBtnGroup optionRight";
+  grid-auto-columns: 1fr;
   align-items: center;
-  justify-content: space-between;
   padding-inline: 20px;
-  height: 50px;
-  background-color: var(--clr-bg-light);
   margin-top: 15px;
+  height: 50px;
   border-radius: 5px;
   box-shadow: rgb(180 177 155 / 29%) 0px 0px 16px 5px;
   font-family: "Josefin Sans", sans-serif;
+  background-color: var(--clr-bg-light);
   color: var(--clr-font-dark);
   transition: all 1s ease-in-out;
+}
+@media (max-width: 1160px) {
+  .options {
+    grid-template-areas:
+      "optionLeft optionLeft optionRight optionRight"
+      "optionBtnGroup optionBtnGroup optionBtnGroup optionBtnGroup";
+    place-items: center;
+    height: 70px;
+  }
+  .options__selectBtnGroup {
+    justify-content: space-evenly;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .option__btn {
+    margin-top: 5px;
+  }
 }
 
 .option__btn {
@@ -102,16 +122,29 @@
   cursor: pointer;
   transition: all 300ms ease-in-out;
 }
+
+.option__left {
+  grid-area: optionLeft;
+  text-align: left;
+}
+.option__right {
+  grid-area: optionRight;
+  text-align: right;
+  white-space: nowrap;
+}
+
 .option__btn:hover {
   color: var(--clr-font--transition);
 }
 
 .options__selectBtnGroup {
   display: flex;
-  gap: 25px;
+  gap: 1rem;
   font-weight: 700;
   font-size: 15px;
+  grid-area: optionBtnGroup;
 }
+
 .options__selectBtnGroup > * {
   cursor: pointer;
   transition: all 300ms ease-in-out;

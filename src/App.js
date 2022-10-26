@@ -1,26 +1,38 @@
-import React, { useState } from "react";
-import Header from "./components/header";
-import Input from "./components/input";
-import Todos from "./components/todos";
+import React, { useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+import { selectTheme } from "./features/themeSlice";
+
+import Main from "./components/main";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import "./App.css";
+
 import BgDark from "./images/bg-desktop-dark.jpg";
 import BgLight from "./images/bg-desktop-light.jpg";
 import BgDarkSmall from "./images/bg-mobile-dark.jpg";
 import BgLightSmall from "./images/bg-mobile-light.jpg";
 
-import "./App.css";
-import { useSelector } from "react-redux";
-import { selectTheme } from "./features/themeSlice";
+import { auth } from "./firebase";
+import { login } from "./features/authSlice";
 function App() {
   const theme = useSelector(selectTheme);
-  const [updateTodo, setUpdateTodo] = useState(() => {
-    return {
-      edit: false,
-      todo: "",
-    };
-  });
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        dispatch(login(authUser.uid, authUser.displayName, authUser.email));
+      } else {
+        console.log("not login");
+        return;
+      }
+    });
+  }, []);
+
   return (
     <div className="App" data-theme={theme}>
-      {/* <img src={theme === "dark" ? BgDark : BgLight} alt="background" /> */}
       <picture className="backgroundImg">
         <source
           srcSet={theme === "dark" ? BgDarkSmall : BgLightSmall}
@@ -28,11 +40,13 @@ function App() {
         />
         <img src={theme === "dark" ? BgDark : BgLight} alt="background" />
       </picture>
-      <div className="wrapper">
-        <Header />
-        <Input updateTodo={updateTodo} setUpdateTodo={setUpdateTodo} />
-        <Todos setUpdateTodo={setUpdateTodo} />
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
