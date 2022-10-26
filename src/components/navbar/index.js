@@ -17,7 +17,10 @@ function UserProfile({ user }) {
   return (
     <div className="user__profile">
       <p>{user?.displayName}</p>
-      <ProfileIcon className="profile__icon" onClick={handleLogOut} />
+      <ProfileIcon className="profile__icon" />
+      <small className="profile__logout" onClick={handleLogOut}>
+        Logout
+      </small>
     </div>
   );
 }

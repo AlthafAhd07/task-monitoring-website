@@ -55,4 +55,5 @@
   background-color: var(--clr-bg-dark);
   transition: all 1s ease-in-out;
   max-height: 100vh;
+  overflow: hidden;
 }
