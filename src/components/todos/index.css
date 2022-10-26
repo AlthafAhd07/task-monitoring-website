@@ -4,7 +4,8 @@
   background-color: var(--clr-bg-light);
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  overflow-y: overlay;
+  overflow-y: auto;
+  overflow-x: hidden;
   transition: all 1s ease-in-out;
 }
 .todos::-webkit-scrollbar {
@@ -17,15 +18,16 @@
 }
 
 .todos::-webkit-scrollbar-thumb {
-  background: linear-gradient(to top, blue, red);
+  background-image: linear-gradient(to top, blue, red);
 
   border-radius: 15px;
   transition: all 3s ease-in-out;
 }
 
 .todos::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to top, red, blue);
+  background-image: linear-gradient(to top, red, blue);
 }
+
 .todos__item {
   box-sizing: border-box;
   height: 50px;

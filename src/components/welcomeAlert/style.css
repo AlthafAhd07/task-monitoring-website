@@ -1,0 +1,95 @@
+.welcome {
+  position: absolute;
+  z-index: 10000;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.welcome__wrapper {
+  background-color: white;
+  border-radius: 5px;
+  height: 450px;
+  width: 420px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-weight: 700;
+  margin-inline: 15px;
+}
+.welcome__exitIcon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  fill: black;
+  stroke: black;
+  cursor: pointer;
+  z-index: 10000000;
+}
+.welcome__firstPart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  margin-top: 40px;
+  margin-bottom: 20px;
+
+  width: 80%;
+  padding-block: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 5px;
+  gap: 2px;
+}
+.welcome__wrapper > h1 {
+  position: relative;
+  top: 15px;
+  text-align: center;
+  background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
+  background-clip: text;
+  color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.welcome__firstPart > p {
+  position: relative;
+  right: 108px;
+}
+.welcome__firstPart > ul {
+  display: flex;
+  gap: 20px;
+}
+.welcome__firstPart > span {
+  position: relative;
+  left: 112px;
+}
+
+.welcome__main {
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-inline: 10px;
+  padding: 10px;
+}
+.welcome__main > h3 {
+  font-size: 1.5rem;
+}
+.welcome__main > p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: red;
+}
+.useInstead {
+  font-size: 0.8rem;
+  margin-top: 10px;
+  font-weight: 400;
+}
+.welcome__main ul {
+  margin-block: 10px;
+}
+.welcome__wrapper h6 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 30px;
+}

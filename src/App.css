@@ -57,3 +57,19 @@
   max-height: 100vh;
   overflow: hidden;
 }
+.before-enter {
+  opacity: 0;
+}
+
+.entering {
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+
+.before-leave {
+  transition: opacity 0.5s;
+}
+
+.leaving {
+  opacity: 0;
+}

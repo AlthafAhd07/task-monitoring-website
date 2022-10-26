@@ -65,10 +65,14 @@ export const todoSlice = createSlice({
         action.payload.status === "completed"
           ? state.activeTodos
           : state.activeTodos - 1;
-      updateDoc(doc(db, "todoCollection", action.payload.userId), {
-        activeTodos: increment(action.payload.status === "completed" ? 0 : -1),
-        todos: arrayRemove(action.payload),
-      });
+      if (!!action.payload.userId) {
+        updateDoc(doc(db, "todoCollection", action.payload.userId), {
+          activeTodos: increment(
+            action.payload.status === "completed" ? 0 : -1
+          ),
+          todos: arrayRemove(action.payload),
+        });
+      }
     },
     clearCompleted: (state, action) => {
       const filtered = state.todos.filter(

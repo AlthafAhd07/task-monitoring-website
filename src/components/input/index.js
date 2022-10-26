@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./index.css";
 import Check from "../global/Check";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createTodo,
-  selectTodo,
-  updateTodoItem,
-} from "../../features/todoSlice";
+import { createTodo, updateTodoItem } from "../../features/todoSlice";
 import { selectAuth } from "../../features/authSlice";
 import {
   arrayRemove,
@@ -22,7 +18,6 @@ const Input = ({ updateTodo, setUpdateTodo }) => {
   const dispatch = useDispatch();
 
   const { user } = useSelector(selectAuth);
-  const { activeTodos } = useSelector(selectTodo);
 
   useEffect(() => {
     setInputValue(updateTodo.todo.message || "");

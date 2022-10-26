@@ -26,3 +26,6 @@
   font-weight: 400;
   padding-top: 5px;
 }
+.inputContainer > form > input:focus {
+  outline: none;
+}
