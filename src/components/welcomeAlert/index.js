@@ -21,7 +21,7 @@ const Welcome = ({ setShowGreeting }) => {
           <span>TODOS</span>
         </div>
         <main className="welcome__main">
-          <h3>Save Your Proccess by Login</h3>
+          <h3>Save Your Progress by Login</h3>
           <p>Don't use your own E-mail or password</p>
           <div>
             <p className="useInstead">
