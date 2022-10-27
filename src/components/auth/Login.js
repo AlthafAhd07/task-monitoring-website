@@ -9,6 +9,7 @@ import {
   increment,
   updateDoc,
 } from "firebase/firestore";
+
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import "./auth.css";
@@ -17,7 +18,7 @@ import { ReactComponent as CrossIcon } from "../../images/icon-cross.svg";
 import { auth, db } from "../../firebase.js";
 import { login, selectAuth } from "../../features/authSlice";
 import { insertTodoOnLogin, selectTodo } from "../../features/todoSlice";
-
+import { changeLoadingState, showToast } from "../../features/alertSlice";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,6 +36,18 @@ const Login = () => {
   }, []);
   function handleSubmit(e) {
     e.preventDefault();
+    if (email.length < 1 || password.length < 1) {
+      dispatch(
+        showToast({
+          visible: true,
+          msg: "Please fill all fields",
+          type: "error",
+        })
+      );
+      return;
+    }
+    dispatch(changeLoadingState(true));
+
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         const UserIdAddedTodos = todos?.map((item) => {
@@ -52,11 +65,49 @@ const Login = () => {
             dispatch(insertTodoOnLogin(res.data()));
           });
         });
+
         dispatch(login(user.uid, user.displayName, user.email));
+        dispatch(changeLoadingState(false));
+        dispatch(
+          showToast({
+            visible: true,
+            msg: "Login Success.",
+            type: "success",
+          })
+        );
         navigate("/");
       })
       .catch((err) => {
-        alert(err);
+        dispatch(changeLoadingState(false));
+        switch (err.code) {
+          case "auth/wrong-password":
+            dispatch(
+              showToast({
+                visible: true,
+                msg: "Wrong password",
+                type: "error",
+              })
+            );
+            break;
+          case "auth/user-not-found":
+            dispatch(
+              showToast({
+                visible: true,
+                msg: "User Not Found",
+                type: "error",
+              })
+            );
+            break;
+
+          default:
+            dispatch(
+              showToast({
+                visible: true,
+                msg: err.code,
+                type: "error",
+              })
+            );
+        }
       });
   }
   return (
@@ -72,7 +123,7 @@ const Login = () => {
           <label htmlFor="email">Email</label>
           <input
             type="email"
-            placeholder="althafahamed@gmail.com"
+            placeholder="althafahd07@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />

@@ -94,7 +94,7 @@
   color: white;
 }
 .auth form > input::placeholder {
-  color: white;
+  color: #fefefe66;
 }
 .auth form > button {
   height: 40px;
@@ -111,4 +111,9 @@
 .bottom__stuff {
   bottom: 10px;
   color: whitesmoke;
+}
+.toatContainer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }

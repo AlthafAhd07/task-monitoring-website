@@ -63,19 +63,19 @@
 
   transition: all 1s ease-in-out;
 }
-.before-enter {
+.before-enter[data-name="greeting"] {
   opacity: 0;
 }
 
-.entering {
+.entering[data-name="greeting"] {
   transition: opacity 0.5s;
   opacity: 1;
 }
 
-.before-leave {
+.before-leave[data-name="greeting"] {
   transition: opacity 0.5s;
 }
 
-.leaving {
+.leaving[data-name="greeting"] {
   opacity: 0;
 }
