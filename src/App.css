@@ -61,7 +61,7 @@
   max-height: 100vh;
   background-color: var(--clr-bg-dark);
 
-  transition: all 1s ease-in-out;
+  transition: all 400ms ease-in-out;
 }
 .before-enter[data-name="greeting"] {
   opacity: 0;
