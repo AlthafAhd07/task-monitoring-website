@@ -25,6 +25,7 @@ const Input = ({ updateTodo, setUpdateTodo }) => {
 
   useEffect(() => {
     setInputValue(updateTodo.todo.message || "");
+    setChecked(updateTodo.todo.status || "active");
   }, [updateTodo.edit, updateTodo.todo.id]);
 
   useEffect(() => {

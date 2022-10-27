@@ -17,7 +17,7 @@ import { updateTodoStatus, deleteTodo } from "../../features/todoSlice";
 import { db } from "../../firebase";
 import Check from "../global/Check";
 
-const TodoItem = ({ todo, setUpdateTodo }) => {
+const TodoItem = ({ todo, updateTodo, setUpdateTodo }) => {
   const [checked, setChecked] = useState(todo.status);
 
   const firstRender = useRef(true);
@@ -64,7 +64,9 @@ const TodoItem = ({ todo, setUpdateTodo }) => {
     dispatch(updateTodoStatus({ id: todo.id, status: checked }));
 
     const timeoutFun = setTimeout(() => {
-      handleUpdateToFirebase();
+      if (!updateTodo.edit) {
+        handleUpdateToFirebase();
+      }
     }, 1000);
     return () => clearTimeout(timeoutFun);
   }, [checked]);

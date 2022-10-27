@@ -7,7 +7,7 @@ import { selectAuth } from "../../features/authSlice";
 import { clearCompleted, selectTodo } from "../../features/todoSlice";
 
 import TodoItem from "./TodoItem";
-const Todos = ({ setUpdateTodo }) => {
+const Todos = ({ updateTodo, setUpdateTodo }) => {
   const { user } = useSelector(selectAuth);
   const { todos, activeTodos } = useSelector(selectTodo);
 
@@ -25,6 +25,7 @@ const Todos = ({ setUpdateTodo }) => {
               <TodoItem
                 todo={todo}
                 key={todo.id}
+                updateTodo={updateTodo}
                 setUpdateTodo={setUpdateTodo}
               />
             );

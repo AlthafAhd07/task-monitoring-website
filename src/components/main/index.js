@@ -20,7 +20,7 @@ const Main = () => {
       <Navbar />
       <Header />
       <Input updateTodo={updateTodo} setUpdateTodo={setUpdateTodo} />
-      <Todos setUpdateTodo={setUpdateTodo} />
+      <Todos updateTodo={updateTodo} setUpdateTodo={setUpdateTodo} />
     </div>
   );
 };
