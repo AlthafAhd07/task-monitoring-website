@@ -58,11 +58,38 @@ const Login = () => {
         });
 
         updateDoc(doc(db, "todoCollection", user.uid), {
-          activeTodos: increment(activeTodos),
+          // activeTodos: increment(activeTodos),
           todos: arrayUnion(...UserIdAddedTodos),
         }).then(() => {
           getDoc(doc(db, "todoCollection", user.uid)).then((res) => {
-            dispatch(insertTodoOnLogin(res.data()));
+            const newActiveTodoCount = res.data().todos.reduce((a, b, i) => {
+              if (i === 1) {
+                let count = 0;
+                if (a.status === "active") {
+                  count += 1;
+                }
+                if (b.status === "active") {
+                  count += 1;
+                }
+                return count;
+              } else {
+                if (b.status === "active") {
+                  return a + 1;
+                } else {
+                  return a;
+                }
+              }
+            });
+            updateDoc(doc(db, "todoCollection", user.uid), {
+              activeTodos: newActiveTodoCount,
+            });
+
+            dispatch(
+              insertTodoOnLogin({
+                ...res.data(),
+                activeTodos: newActiveTodoCount,
+              })
+            );
           });
         });
 
