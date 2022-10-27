@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
-import "./index.css";
+import { useDispatch, useSelector } from "react-redux";
+
+import "./header.css";
 import Dark from "../../images/icon-moon.svg";
 import Light from "../../images/icon-sun.svg";
-import { useDispatch, useSelector } from "react-redux";
+
 import { selectTheme } from "../../features/themeSlice";
 import { changeTheme } from "../../features/themeSlice";
+
 const Header = () => {
   const theme = useSelector(selectTheme);
-  const dispatch = useDispatch();
   const [inAnimation, setInAnimation] = useState(false);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     setTimeout(() => {
       setInAnimation(false);

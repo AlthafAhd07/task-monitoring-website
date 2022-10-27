@@ -1,6 +1,7 @@
 import React from "react";
-import { ReactComponent as CrossIcon } from "../../images/icon-cross.svg";
+
 import "./style.css";
+import { ReactComponent as CrossIcon } from "../../images/icon-cross.svg";
 const Welcome = ({ setShowGreeting }) => {
   return (
     <div className="welcome">

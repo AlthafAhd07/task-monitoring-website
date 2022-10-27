@@ -5,12 +5,14 @@
 }
 @media only screen and (max-width: 800px) {
   .navbar {
-    right: 0%;
-    width: 100%;
-    top: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    top: 5px;
+    right: 0%;
+
+    width: 100%;
   }
 }
 
@@ -18,28 +20,43 @@
   position: absolute;
   right: 16px;
   bottom: -17px;
+
   font-size: 12px;
+
   cursor: pointer;
   color: blue;
 }
-.navbar__link {
-  text-decoration: none;
-  font-weight: bold;
-  color: white;
-  background-color: blue;
-  padding: 10px;
+.navbar__linkWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 120px;
+  height: 45px;
+  background-image: linear-gradient(to right, #00b09b, #96c93d);
+
   border-radius: 30px;
+  cursor: pointer;
+}
+.navbar__link {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+
   animation: inAnimFade 500ms ease-in-out;
 }
 .user__profile {
   display: flex;
   align-items: center;
-  animation: inAnimFade 500ms ease-in-out;
+
   position: relative;
+
+  animation: inAnimFade 500ms ease-in-out;
 }
 .profile__icon {
   width: 40px;
   height: 40px;
   margin-inline: 15px;
+
   cursor: pointer;
 }

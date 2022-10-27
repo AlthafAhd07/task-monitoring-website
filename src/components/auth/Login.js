@@ -1,11 +1,7 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import "./style.css";
-import { auth, db } from "../../firebase.js";
 import { useDispatch, useSelector } from "react-redux";
-import { ReactComponent as CrossIcon } from "../../images/icon-cross.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { login, selectAuth } from "../../features/authSlice";
+
 import {
   arrayUnion,
   doc,
@@ -13,16 +9,25 @@ import {
   increment,
   updateDoc,
 } from "firebase/firestore";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+import "./auth.css";
+import { ReactComponent as CrossIcon } from "../../images/icon-cross.svg";
+
+import { auth, db } from "../../firebase.js";
+import { login, selectAuth } from "../../features/authSlice";
 import { insertTodoOnLogin, selectTodo } from "../../features/todoSlice";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { user } = useSelector(selectAuth);
+  const { activeTodos, todos } = useSelector(selectTodo);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { user } = useSelector(selectAuth);
-
-  const { activeTodos, todos } = useSelector(selectTodo);
   useEffect(() => {
     if (!!user) {
       navigate("/");

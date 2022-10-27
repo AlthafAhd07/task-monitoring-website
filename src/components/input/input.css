@@ -1,12 +1,15 @@
 .inputContainer {
   display: flex;
   align-items: center;
-  height: 50px;
-  background-color: var(--clr-bg-light);
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
   position: relative;
   z-index: -1;
+
+  height: 50px;
+  background-color: var(--clr-bg-light);
+
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: all 1s ease-in-out;
 }
 .inputContainer > form {
@@ -15,16 +18,17 @@
 }
 
 .inputContainer > form > input {
+  width: 95%;
+  height: 25px;
+  padding-top: 5px;
   outline-width: 0;
   border: 0;
   background: none;
-  width: 95%;
-  height: 25px;
-  font-size: 18px;
-  color: var(--clr-font-dark);
+
   font-family: "Josefin Sans", sans-serif;
+  color: var(--clr-font-dark);
+  font-size: 18px;
   font-weight: 400;
-  padding-top: 5px;
 }
 .inputContainer > form > input:focus {
   outline: none;

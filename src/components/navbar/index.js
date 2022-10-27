@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { logout, selectAuth } from "../../features/authSlice";
-import "./navbar.css";
 
+import "./navbar.css";
 import { ReactComponent as ProfileIcon } from "../../images/my-account-icon.svg";
+
 import { auth } from "../../firebase";
+import { logout, selectAuth } from "../../features/authSlice";
 
 function UserProfile({ user }) {
   const dispatch = useDispatch();
@@ -26,14 +27,17 @@ function UserProfile({ user }) {
 }
 const Navbar = () => {
   const { user } = useSelector(selectAuth);
+
   return (
     <div className="navbar">
       {user ? (
         <UserProfile user={user} />
       ) : (
-        <Link to="/login" className="navbar__link">
-          Login Now
-        </Link>
+        <div className="navbar__linkWrapper">
+          <Link to="/login" className="navbar__link">
+            Login Now
+          </Link>
+        </div>
       )}
     </div>
   );

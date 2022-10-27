@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import "./todos.css";
+
 import { selectAuth } from "../../features/authSlice";
 import { clearCompleted, selectTodo } from "../../features/todoSlice";
-import "./index.css";
+
 import TodoItem from "./TodoItem";
 const Todos = ({ setUpdateTodo }) => {
+  const { user } = useSelector(selectAuth);
   const { todos, activeTodos } = useSelector(selectTodo);
-  const dispatch = useDispatch();
+
   const [filterByStatus, setFilterByStatus] = useState();
   const [selectAllTodo, setSelectAllTodo] = useState(true);
-  const { user } = useSelector(selectAuth);
+
+  const dispatch = useDispatch();
+
   return (
     <div>
       <div className="todos">

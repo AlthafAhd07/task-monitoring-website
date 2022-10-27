@@ -2,18 +2,22 @@
   height: 350px;
   margin-top: 15px;
   background-color: var(--clr-bg-light);
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
   overflow-y: auto;
   overflow-x: hidden;
+
+  border-radius: 5px;
   transition: all 1s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .todos::-webkit-scrollbar {
   width: 5px;
+
   border-radius: 15px;
 }
 .todos::-webkit-scrollbar-track {
   background: #f1f1f1;
+
   border-radius: 15px;
 }
 
@@ -29,14 +33,17 @@
 }
 
 .todos__item {
-  box-sizing: border-box;
-  height: 50px;
-  position: relative;
-  border-bottom: 1px solid var(--clr-border);
   display: flex;
   align-items: center;
-  z-index: 1;
   justify-content: space-between;
+
+  position: relative;
+  z-index: 1;
+
+  box-sizing: border-box;
+  height: 50px;
+  border-bottom: 1px solid var(--clr-border);
+
   animation: inAnim 800ms ease-in-out;
   transition: all 1s ease-in-out;
 }
@@ -57,15 +64,18 @@
 }
 .todo__left {
   display: flex;
+
   transition: all 1s ease-in-out;
 }
 .todo__left > p {
-  font-family: "Josefin Sans", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
   position: relative;
+
   padding-top: 3px;
+
+  font-family: "Josefin Sans", sans-serif;
   color: var(--clr-font-primary);
+  font-size: 16px;
+  font-weight: 400;
 }
 .todos__item:hover > .todo__options > * {
   scale: 1;
@@ -74,15 +84,18 @@
   display: flex;
   align-items: center;
   gap: 15px;
+
   margin-right: 20px;
 }
 
 .todo__penIcon {
-  scale: 0;
-  cursor: pointer;
   width: 20px;
   height: 20px;
+
+  scale: 0;
   fill: hsl(235, 19%, 35%);
+
+  cursor: pointer;
   transition: all 300ms ease-in-out;
 }
 .todo__penIcon:hover {
@@ -90,12 +103,14 @@
 }
 
 .todo__crossIcon {
-  scale: 0;
-  cursor: pointer;
   width: 20px;
   height: 20px;
-  transition: all 300ms ease-in-out;
+
+  scale: 0;
   fill: #494c6b;
+
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
 }
 .todo__crossIcon:hover {
   fill: var(--clr-font--transition);
@@ -108,15 +123,18 @@
     "optionLeft optionBtnGroup optionBtnGroup optionRight";
   grid-auto-columns: 1fr;
   align-items: center;
-  padding-inline: 20px;
-  margin-top: 15px;
+
   height: 50px;
-  border-radius: 5px;
-  box-shadow: rgb(180 177 155 / 29%) 0px 0px 16px 5px;
-  font-family: "Josefin Sans", sans-serif;
+  margin-top: 15px;
+  padding-inline: 20px;
   background-color: var(--clr-bg-light);
+
+  font-family: "Josefin Sans", sans-serif;
   color: var(--clr-font-dark);
+
+  border-radius: 5px;
   transition: all 1s ease-in-out;
+  box-shadow: rgb(180 177 155 / 29%) 0px 0px 16px 5px;
 }
 @media (max-width: 1160px) {
   .options {
@@ -124,10 +142,12 @@
       "optionLeft optionLeft optionRight optionRight"
       "optionBtnGroup optionBtnGroup optionBtnGroup optionBtnGroup";
     place-items: center;
+
     height: 70px;
   }
   .options__selectBtnGroup {
     justify-content: space-evenly;
+
     width: 100%;
     margin-bottom: 5px;
   }
@@ -139,16 +159,19 @@
 .option__btn {
   font-size: 12px;
   font-weight: 400;
+
   cursor: pointer;
   transition: all 300ms ease-in-out;
 }
 
 .option__left {
   grid-area: optionLeft;
+
   text-align: left;
 }
 .option__right {
   grid-area: optionRight;
+
   text-align: right;
   white-space: nowrap;
 }
@@ -160,9 +183,10 @@
 .options__selectBtnGroup {
   display: flex;
   gap: 1rem;
+  grid-area: optionBtnGroup;
+
   font-weight: 700;
   font-size: 15px;
-  grid-area: optionBtnGroup;
 }
 
 .options__selectBtnGroup > * {

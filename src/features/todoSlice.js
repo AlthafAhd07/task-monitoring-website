@@ -1,4 +1,5 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+
 import {
   arrayRemove,
   arrayUnion,
@@ -7,6 +8,7 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
+
 import { db } from "../firebase";
 
 const initialState = {

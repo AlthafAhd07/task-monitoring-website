@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./index.css";
-import Check from "../global/Check";
 import { useDispatch, useSelector } from "react-redux";
-import { createTodo, updateTodoItem } from "../../features/todoSlice";
-import { selectAuth } from "../../features/authSlice";
+
 import {
   arrayRemove,
   arrayUnion,
@@ -11,13 +8,20 @@ import {
   increment,
   updateDoc,
 } from "firebase/firestore";
+
+import "./input.css";
+import Check from "../global/Check";
+
 import { db } from "../../firebase";
+import { selectAuth } from "../../features/authSlice";
+import { createTodo, updateTodoItem } from "../../features/todoSlice";
 const Input = ({ updateTodo, setUpdateTodo }) => {
+  const { user } = useSelector(selectAuth);
+
   const [checked, setChecked] = useState("active");
   const [inputValue, setInputValue] = useState("");
-  const dispatch = useDispatch();
 
-  const { user } = useSelector(selectAuth);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setInputValue(updateTodo.todo.message || "");

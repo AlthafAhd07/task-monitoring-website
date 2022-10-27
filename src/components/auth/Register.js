@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react";
-import "./style.css";
-import { auth, db } from "../../firebase.js";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+
+import { doc, setDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
+import "./auth.css";
 import { ReactComponent as CrossIcon } from "../../images/icon-cross.svg";
 
+import { auth, db } from "../../firebase.js";
 import { login, selectAuth } from "../../features/authSlice";
-import { doc, getDoc, setDoc } from "firebase/firestore";
 import { insertTodoOnLogin, selectTodo } from "../../features/todoSlice";
 
 const Register = () => {
   const [userData, setUserData] = useState({});
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { activeTodos, todos } = useSelector(selectTodo);
 
   const { user } = useSelector(selectAuth);
+  const { activeTodos, todos } = useSelector(selectTodo);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!!user) {
       navigate("/");
@@ -35,8 +39,9 @@ const Register = () => {
     if (
       userData.password !== userData?.confirmPassword ||
       userData.username?.length < 4
-    )
+    ) {
       return;
+    }
 
     createUserWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userAuth) => {

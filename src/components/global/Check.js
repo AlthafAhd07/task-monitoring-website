@@ -1,6 +1,7 @@
 import React from "react";
-import { ReactComponent as CheckIcon } from "../../images/icon-check.svg";
+
 import "./check.css";
+import { ReactComponent as CheckIcon } from "../../images/icon-check.svg";
 const Check = ({ checked, setChecked }) => {
   return (
     <div
