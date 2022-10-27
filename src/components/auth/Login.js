@@ -2,13 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import {
-  arrayUnion,
-  doc,
-  getDoc,
-  increment,
-  updateDoc,
-} from "firebase/firestore";
+import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -24,7 +18,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const { user } = useSelector(selectAuth);
-  const { activeTodos, todos } = useSelector(selectTodo);
+  const { todos } = useSelector(selectTodo);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -83,7 +77,6 @@ const Login = () => {
             updateDoc(doc(db, "todoCollection", user.uid), {
               activeTodos: newActiveTodoCount,
             });
-
             dispatch(
               insertTodoOnLogin({
                 ...res.data(),

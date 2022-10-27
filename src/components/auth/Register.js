@@ -74,6 +74,7 @@ const Register = () => {
     }
 
     dispatch(changeLoadingState(true));
+
     createUserWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userAuth) => {
         updateProfile(userAuth.user, {
