@@ -32,7 +32,7 @@ function App() {
       setShowGreeting(true);
       setTimeout(() => {
         setShowGreeting(false);
-      }, 5000);
+      }, 10000);
       localStorage.setItem("visited", true);
     } else {
       return;
