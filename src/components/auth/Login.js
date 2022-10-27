@@ -72,7 +72,7 @@ const Login = () => {
           <label htmlFor="email">Email</label>
           <input
             type="email"
-            placeholder="Admin@gmial.com"
+            placeholder="althafahamed@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />

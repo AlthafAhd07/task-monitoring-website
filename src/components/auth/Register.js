@@ -91,7 +91,7 @@ const Register = () => {
           <label htmlFor="userName">Name</label>
           <input
             type="text"
-            placeholder="John"
+            placeholder="Althaf"
             id="userName"
             name="username"
             value={userData.username || ""}
@@ -100,7 +100,7 @@ const Register = () => {
           <label htmlFor="email">Email</label>
           <input
             type="email"
-            placeholder="Admin@gmial.com"
+            placeholder="althafahamed@gmail.com"
             id="email"
             name="email"
             value={userData.email || ""}
