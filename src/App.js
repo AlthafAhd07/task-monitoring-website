@@ -85,7 +85,7 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
-      {loading && <Loading />}
+      <TinyTransition duration={300}>{loading && <Loading />}</TinyTransition>
 
       {showToast && <Toast />}
     </div>
