@@ -33,11 +33,9 @@ const Navbar = () => {
       {user ? (
         <UserProfile user={user} />
       ) : (
-        <div className="navbar__linkWrapper">
-          <Link to="/login" className="navbar__link">
-            Login Now
-          </Link>
-        </div>
+        <Link to="/login" className="navbar__link">
+          <div className="navbar__linkWrapper">Login Now</div>
+        </Link>
       )}
     </div>
   );

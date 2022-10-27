@@ -46,7 +46,7 @@ const Login = () => {
 
         updateDoc(doc(db, "todoCollection", user.uid), {
           activeTodos: increment(activeTodos),
-          todos: arrayUnion(...todos),
+          todos: arrayUnion(...UserIdAddedTodos),
         }).then(() => {
           getDoc(doc(db, "todoCollection", user.uid)).then((res) => {
             dispatch(insertTodoOnLogin(res.data()));
