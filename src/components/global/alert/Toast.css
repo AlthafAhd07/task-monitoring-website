@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
 
-  position: absolute;
+  position: fixed;
   top: 30px;
   right: 5%;
   z-index: 100;

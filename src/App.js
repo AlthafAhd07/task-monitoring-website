@@ -36,7 +36,7 @@ function App() {
   const dispatch = useDispatch();
 
   // custom hook for unmount animation
-  const showToast = useDelayUnmount(toast.visible, 900, toast);
+  const showToast = useDelayUnmount(toast.visible, 900);
 
   useEffect(() => {
     const visited = localStorage.getItem("visited");
