@@ -47,6 +47,7 @@
   margin-top: 40px;
   margin-bottom: 20px;
   padding-block: 10px;
+  overflow: hidden;
 
   border-radius: 5px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -67,6 +68,7 @@
   position: relative;
   right: 108px;
 }
+
 .welcome__firstPart > ul {
   display: flex;
   gap: 20px;
@@ -107,4 +109,18 @@
 
   text-align: center;
   font-size: 1.2rem;
+}
+@media (max-width: 440px) {
+  .welcome__firstPart > p {
+    right: 98px;
+  }
+  .welcome__firstPart > span {
+    left: 105px;
+  }
+}
+
+@media (max-width: 400px) {
+  .welcome__firstPart > p {
+    right: 85px;
+  }
 }
