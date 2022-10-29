@@ -34,9 +34,9 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      {user ? (
+      {!isKeyboardOpen && user ? (
         <UserProfile user={user} />
-      ) : isKeyboardOpen ? null : (
+      ) : (
         <Link to="/login" className="navbar__link">
           <div className="navbar__linkWrapper">Login Now</div>
         </Link>
