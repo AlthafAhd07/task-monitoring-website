@@ -34,13 +34,13 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      {!isKeyboardOpen && user ? (
-        <UserProfile user={user} />
-      ) : (
-        <Link to="/login" className="navbar__link">
-          <div className="navbar__linkWrapper">Login Now</div>
-        </Link>
-      )}
+      {user
+        ? !isKeyboardOpen && <UserProfile user={user} />
+        : !isKeyboardOpen && (
+            <Link to="/login" className="navbar__link">
+              <div className="navbar__linkWrapper">Login Now</div>
+            </Link>
+          )}
     </div>
   );
 };
