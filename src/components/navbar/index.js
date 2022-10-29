@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import useDetectKeyboardOpen from "use-detect-keyboard-open";
+
 import "./navbar.css";
 import { ReactComponent as ProfileIcon } from "../../images/my-account-icon.svg";
 
@@ -28,11 +30,13 @@ function UserProfile({ user }) {
 const Navbar = () => {
   const { user } = useSelector(selectAuth);
 
+  const isKeyboardOpen = useDetectKeyboardOpen();
+
   return (
     <div className="navbar">
       {user ? (
         <UserProfile user={user} />
-      ) : (
+      ) : isKeyboardOpen ? null : (
         <Link to="/login" className="navbar__link">
           <div className="navbar__linkWrapper">Login Now</div>
         </Link>
