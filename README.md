@@ -8,7 +8,7 @@
 => Redux is used to manage the whole state of the app.\
 => For authentication firebase was used here.
 
-=> `Link for the deployed site :` [MYP](https://todo-app-althaf.netlify.app/)
+=> `Link for the deployed site :` [MYP](https://myp-app-althaf.netlify.app/)
 
 ### Features
 
