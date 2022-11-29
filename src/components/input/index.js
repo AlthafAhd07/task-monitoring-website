@@ -94,7 +94,7 @@ const Input = ({ updateTodo, setUpdateTodo }) => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Create a new todo..."
+          placeholder="Create a new task..."
           value={inputValue}
           onInput={(e) => {
             setInputValue(e.target.value);

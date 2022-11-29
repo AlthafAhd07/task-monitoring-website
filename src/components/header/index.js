@@ -21,7 +21,7 @@ const Header = () => {
   }, [theme]);
   return (
     <div className="header">
-      <h1 className="header__title">TODO</h1>
+      <h1 className="header__title"></h1>
       <img
         className="header__themeIcon"
         src={theme === "light" ? Dark : Light}

@@ -18,7 +18,7 @@ const Welcome = ({ setShowGreeting }) => {
             <li>Update</li>
             <li>Delete</li>
           </ul>
-          <span>TODOS</span>
+          <span>TASKS</span>
         </div>
         <main className="welcome__main">
           <h3>Save Your Progress by Login</h3>

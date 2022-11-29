@@ -9,6 +9,65 @@
   font-family: "Josefin Sans", sans-serif;
   font-size: 36px;
   font-weight: 700;
+
+  height: 36px;
+  width: 85px;
+
+  position: relative;
+
+  cursor: pointer;
+}
+.header__title::before {
+  content: "MYP";
+
+  position: absolute;
+
+  width: 100%;
+  background-image: linear-gradient(to right, #f85032, #e73827);
+  background-clip: text;
+
+  color: transparent;
+
+  opacity: 1;
+
+  transition: all 500ms ease-in-out;
+}
+
+.header__title:hover::before {
+  opacity: 0;
+  scale: 0;
+  width: 0%;
+  overflow: hidden;
+}
+
+.header__title::after {
+  content: "Monitor Your Progress";
+
+  position: absolute;
+  left: 0;
+  top: 25%;
+
+  width: 300%;
+  background-image: linear-gradient(to right, #56ab2f, #a8e063);
+  background-clip: text;
+
+  color: transparent;
+
+  font-size: 1.2rem;
+
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+
+  overflow: hidden;
+  transition: all 400ms ease-in-out;
+}
+
+.header__title:hover::after {
+  transition-delay: 150ms;
+
+  transform: scaleX(1);
+  opacity: 1;
 }
 
 .header__themeIcon {
